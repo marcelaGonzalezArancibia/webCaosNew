@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .Carrito import *
-# esto es una prueba
+# esto es una prueba desde ronald
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login as login_autent
