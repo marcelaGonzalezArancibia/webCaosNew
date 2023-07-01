@@ -1,0 +1,74 @@
+{% extends "plantilla_nav.html" %}
+{% load static %}
+
+{% block css %}
+ 
+<link rel="stylesheet" href="{% static 'css/estilos_contacto.css' %}">
+<title>Formulario de contacto</title>
+
+{% endblock css %}
+
+   
+{% block contenido %}
+
+
+    <div class="contenedor">
+
+        <h1>contactanos...</h1>
+
+        <div class="contenido">
+
+            
+
+            <form id="basic-form" action="enviado.html" method="GET" class="formulario">
+
+                <input type="text" name="nombre" placeholder="Nombre..." id="nombre" >
+                <input type="text" name="correo" placeholder="Email..." id="correo">
+                <input type="text" name="asunto" placeholder="Asunto..." id="asunto">
+                <textarea name="mensaje" id="mensaje" placeholder="Mensaje..."></textarea>
+                <div class="btn">
+                <button type="button" onclick="validarFormulario()" >Enviar</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+
+    <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+   
+
+{% endblock contenido %}
+
+
+
+
+
+{% block js %}
+ <script src="{% static 'js/funciones_contacto.js' %}"></script>
+ <script src="{% static 'js/contacto.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+{% endblock js %}

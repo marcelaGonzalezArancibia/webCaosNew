@@ -1,0 +1,161 @@
+{% extends "plantilla_nav.html" %}
+{% load static %}
+
+{% block css %}
+
+ <link rel="stylesheet" href="{% static 'css/ingresar_noticia.css' %}">
+
+ 
+{% endblock css %}
+
+{% block contenido %}
+<div class="fondoo">
+      <div class="contenedor">
+        <div style="text-align: center;font-size: xx-large;">
+          {{mensaje}}
+          </div>
+        <form id="formulario" action="{% url 'INGRESAR_NOTICIA' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h2 style="text-align: center;" class="titulo">Ingresar Noticia</h2>
+          <input value="{{noticia.idnoticia}}" type="text" placeholder="ingrese id" class="col-pp col-md-5" name="txtid" id="txtid">
+          <br>
+          <br>
+          <input value="{{noticia.nombre_periodista}}" type="text" placeholder="nombre periodista" class="col-pp col-md-5" name="txtnombre_periodista" id="txtnombre_periodista">
+          <br>
+          <br>
+        
+          <textarea placeholder="titulo de la noticia" class=" col col-g col-md-12" name="txttitulo_noticia" id="txttitulo_noticia" cols="30" rows="10">{{noticia.titulo_noticia}}</textarea>
+          <br>
+          <br>
+          <textarea placeholder="titular  de la noticia" class="col col-g col-md-12" name="txttitular_noticia" id="txttitular_noticia" cols="30" rows="10">{{noticia.titular_noticia}}</textarea>
+          <br>
+          <br>
+          <textarea placeholder="cuerpo  de la noticia" class="col col-g col-md-12" name="txtcuerpo_noticia" id="txtcuerpo_noticia" cols="30" rows="10">{{noticia.cuerpo_noticia}}</textarea>
+          <br>
+          <br>
+          Imagen:<img src="{{noticia.foto.url  }}" width="100px" height="100px" style="object-fit: cover;">
+          
+          <input class="col-g" type="file" name="txtimg" id="txtimg">
+          <br>
+          <br>
+          <select class="col col-g col-md-5" name="cbocategoria" id="cbocategoria">
+              {% for item in categorias %}
+                <option value="{{item.categoria}}">{{item.categoria}}</option>
+              {% endfor %}
+          </select>
+          <br>
+          <br>
+          <input name="accion" class="btn" type="submit" value="enviar">
+          <br>
+          <br>
+        </form>
+
+
+
+
+
+
+
+<table class="table">
+  <thead>
+    <div style="text-align: center; color: black; font-size: 35px;">
+    Detalles De Sus Noticias...
+    </div>
+    <br>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Periodista</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">estado</th>
+      <th scope="col">comentario</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in noticias %}
+    <tr>
+      <th scope="row">{{item.idnoticia}}</th>
+      <td>{{item.titulo_noticia}}</td>
+      
+      <td>{{item.nombre_periodista}}</td>
+      <td><img src="{{ item.foto.url }}" width="100px" height="100px" style="object-fit: cover;"></td>
+      <td>{{item.categoria}}</td>
+      <td>
+          {% if  item.publicar == True %}
+              publicado
+          {% else %}
+              no publicado
+          {% endif %}
+      </td>
+      <td>{{item.comentario}}</td>
+      
+      <td>
+      <input class="btn" type="button" onclick="mensaje_eli('{{item.idnoticia}}')" value="Eliminar">
+      <a class="btn" href="{% url 'MODIFICAR_NOTICIA' item.idnoticia %}">Modificar</a>
+      <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="galeria_id({{item.idnoticia}})">Agregar foto</a>
+      </td>
+  
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel" >Agregar foto a galeria</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+     
+    <form action="{% url 'GRABAR_GALERIA' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="modal-body">
+          <input type ="hidden" name="txtId" id="txtId" value="">
+          <input type="file" name="txtFoto" id="txtFoto"> 
+      
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
+
+
+
+{% block js %}
+<script>
+  function mensaje_eli(idnoticia){
+    var msg;
+    var opcion = confirm("Desea eliminar");
+    if(opcion== true){
+      location.href = '/eliminar/'+idnoticia+'/';
+      msg="Noticia Eliminada";
+    }else{
+      msg="Cancelo";
+      alert(msg);
+    }
+  }
+  function modificar(idnoticia){
+    location.href='busc_mod_noticia/'+idnoticia+'/';
+  }
+
+function galeria_id(idnoticia){
+  document.getElementById("txtId").value=idnoticia;
+  //alert (idnoticia)
+  }
+</script>
+{% endblock js %}

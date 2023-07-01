@@ -1,0 +1,119 @@
+{% extends "plantilla_nav.html" %}
+{% load static %}
+
+  {% block css %}
+        <link rel="stylesheet" href="{% static 'css//estilos_index.css' %}" />
+  {% endblock css %}
+
+{% block contenido %}
+<div class="carrusel">
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'img/img_fondo/fondo.jpg' %}" class="d-block w-100" alt="..."/>
+            <div class="carousel-caption d-none d-md-block">
+              <div class="container">
+                <div class="txt_carrusel">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% for noti in noticias %}
+          <div class="carousel-item">
+            <img src="{{noti.foto.url}}" class="d-block w-100" alt="..."/>
+            <div class="carousel-caption d-none d-md-block">
+              <div class="container">
+                <div class="txt_carrusel">
+                  <h5 style="background-color: aliceblue;opacity:0.8;border-radius: 10px;color: black;">{{noti.titulo_noticia}}</h5>
+                  <p style="background-color: aliceblue;opacity:0.8;border-radius: 10px;color: black;">
+                   {{noti.titular_noticia}}
+                  </p>
+                  <div>
+                    <a href="{% url 'PAGINA_NOTICIAS' noti.idnoticia %}" style="color:rgb(121, 10, 121);background-color:aliceblue;opacity:0.8;border-radius:10px;padding:10px 20px;display:inline-block;text-decoration:none;font-weight:bold;">LEER MÁS</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+
+    
+  <div class="container">
+
+    {% for item in noticias %}
+    <div class="card">
+       <figure>
+          <img src="{{item.foto.url}}"  />
+        </figure>
+        <div class="contenido">
+          <h3>{{item.titulo_noticia}}</h3>
+          <br>
+          <br>
+          <br>
+          <p>{{item.titular_noticia}}</p>
+          <a href="{% url 'PAGINA_NOTICIAS' item.idnoticia %}">LEER MAS</a>
+        </div>
+      </div>
+    {% endfor %}
+      
+
+      
+
+
+{% endblock contenido %}
+
+{% block js %}
+  <script src="{% static 'js/index.js' %}"></script>
+{% endblock js %}

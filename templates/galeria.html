@@ -1,0 +1,93 @@
+{% extends "plantilla_nav.html" %}
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/estilos_pag_noticia.css' %}" />
+<title>noticias</title>
+{% endblock css %}
+{% block contenido %}
+
+<!-- bienvenida -->
+<center>
+<section id="bienvenido">
+
+    <h2>Galeria de noticias </h2>
+
+</section>
+<!-- seccion blog-->
+<section id="blog">
+    <h3>se han encontrado {{cantidad}} noticias </h3>
+  </center>
+<div> 
+  <acticle style="display: flex;justify-content:flex-end;flex-wrap: wrap;">
+    <div style="margin: 10px;width: 100%;display: flex;justify-content:flex-end;flex-wrap: wrap;">
+    
+
+
+   
+  
+  <div style="display: flex;width: 33%;">
+    <form action="{% url 'FILTRO_DESC' %}" method="post">
+      {% csrf_token %}
+      
+      <input type="text" name="txtDesc" id="txtDesc" placeholder="Buscar periodista...">
+      <input type="submit" value="Buscar">
+    </form>
+  </div>
+  <div style="display: flex;width: 33%;">
+    <form  action="{% url 'FILTRO_CATE' %}" method="post">
+      {% csrf_token %}
+      
+      <select name="cboCategoria">
+        {% for cate in categorias %}
+        <option>{{cate.categoria}}</option>
+        {% endfor %}
+        <option>Todos</option>
+
+      </select>
+      <input type="submit" value="Buscar">
+    </form>
+  </div>
+    
+</div>
+</article>
+
+
+
+  <!--noticia-->
+
+  <div class="noticia">
+    <div class="color_fondo2">
+      <div class="clearfix">
+        <acticle style="display: flex;justify-content:flex-end;flex-wrap: wrap;">
+          {% for item in noticia %}
+          <div style="margin: 10px;">
+            <div class="card" style="width: 18rem;display:flex;">
+              <img src="{{item.foto.url}}" class="card-img-top" alt="...">
+              <div class="card-body">
+
+                <h5 class="card-title"> {{item.titulo_noticia}}</h5>
+                <p class="card-text"> {{item.titular_noticia}}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">periodista:{{item.nombre_periodista}}</li>
+                <li class="list-group-item">Categoria: {{item.categoria}}</li>
+              </ul>
+              <div class="card-body">
+                <center> <a href="{% url 'PAGINA_NOTICIAS' item.idnoticia %}" class="card-link" style="color: rgb(121, 10, 121);" >Ver mas </a></center>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </acticle>
+      </div>
+    </div>
+  </div>
+
+  {% endblock contenido %}
+
+
+
+  {% block js %}
+  {% endblock js %}

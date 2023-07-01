@@ -1,0 +1,65 @@
+.title{
+    margin: 50px;
+    text-align: center;
+}
+#blog{
+    text-align: center;
+    font-family: cursive;
+}
+.contenedor img{
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    border: solid 2px rgb(121, 10, 121);
+}
+.contenedor{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /*multi linea*/
+    text-align: center;
+}
+.contenedor article{
+    margin: 10px;
+}
+.button {
+    background-color: rgb(121, 10, 121);
+    color: white;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  
+.button:hover {
+    background-color: rgb(121, 10, 121);
+}
+/*#############################################*/
+
+.cart{
+    background-color: bisque;
+}
+
+.cart{
+    border-top: 2px solid rgb(121, 10, 121);
+    padding: 50px 50px;
+    margin-top: 20px;
+    color: black;
+    max-width: 43%;
+    margin-left: 55%;
+    background: rgb(228, 219, 219);
+    border-radius: 10px;
+}
+.tr{
+    text-align: center;
+    margin: 0 0 1rem 0;
+
+}
+.btn{
+    background-color: rgb(141, 46, 141);
+    color:black;
+    border: solid 2px white;
+    opacity: 0.8;
+}
+.btn:hover {
+    background-color:rgb(141, 46, 141);
+    border: solid 2px white;
+}

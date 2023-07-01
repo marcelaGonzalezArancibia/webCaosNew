@@ -1,0 +1,51 @@
+
+  .contenedor {
+    max-width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    
+  
+    
+  }
+  #formulario {
+    border-top: 2px solid rgb(121, 10, 121);
+    padding: 50px 100px;
+    /*border: 3px solid rgb(121, 10, 121);*/
+    
+    margin: auto;
+    /*margin-top:dejar  un espacio*/
+    margin-top: 10px;
+    color: black;
+    background: rgb(228, 219, 219);
+    /*opacity:dar transparencia*/
+    opacity: 0.8;
+    /*border-radius:redondea las esquinas*/
+    border-radius: 10px;
+  }
+  .form-titulo {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 20px;
+  }
+  
+ 
+.col{
+  border-radius: 10px;
+}
+
+.col-pp{
+  border-radius: 10px;
+}
+
+.btn{
+  background: white;
+  color: rgb(121, 10, 121);
+   border-radius: 10px;
+   BORDER: rgb(128,128,128) 1px dashed; FONT-SIZE: 8pt; FONT-FAMILY: Verdana;
+}
+.btn:hover{
+   background:rgb(121, 10, 121) ;
+}
+  

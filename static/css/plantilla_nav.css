@@ -1,0 +1,22 @@
+/*pagina principal*/
+body.color_fondo{
+    background-color: rgb(184, 181, 181);
+}
+
+.logo_tipo img{
+    width: 80px;
+    height: 80px;
+}
+.navbar{
+    margin-top: 0px;
+
+}
+
+.boton_var{
+   color: rgb(121, 10, 121);
+    border-radius: 10px;
+    BORDER: rgb(128,128,128) 1px dashed; FONT-SIZE: 8pt; FONT-FAMILY: Verdana;
+}
+.boton_var:hover{
+    background:rgb(121, 10, 121) ;
+}
